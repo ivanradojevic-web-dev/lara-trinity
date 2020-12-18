@@ -30,4 +30,10 @@ class Comment extends Model
     {
         return $this->belongsToMany(News::class);
     }
+
+
+    public function getIsActiveAttribute()
+    {
+        return $this->status === 'active';
+    }
 }

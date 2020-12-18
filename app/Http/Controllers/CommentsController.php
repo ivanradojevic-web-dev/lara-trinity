@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comment;
+use App\Repositories\CommentRepository;
 
 class CommentsController extends Controller
 {
@@ -12,21 +13,16 @@ class CommentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(CommentRepository $commentrepository)
     {
-        //$comments = Comment::latest()->paginate(10);
+        $comments = Comment::with('author', 'posts', 'news', 'replies')->withCount('replies')->latest()->paginate(10);
 
-        //return $comments;
+        //dd($comments);
         //return view('news.index', compact('news'));
 
-        if (request()->channel) {      
-            $comments = Comment::whereHas(request()->channel)->get();
+        //$comments = $commentrepository->browse();
 
-        } else {
-            $comments = Comment::get();       
-        }
-
-        return $comments;
+        return view('comments.index', compact('comments'));
     }
 
     /**
@@ -81,7 +77,15 @@ class CommentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'status' => 'required'
+        ]);
+
+        $comment = Comment::findOrFail($id);
+        $comment->status = $request->status;
+        $comment->save();
+
+        return back()->with('success', '');
     }
 
     /**
