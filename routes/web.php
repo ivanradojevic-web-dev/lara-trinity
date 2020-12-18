@@ -3,6 +3,7 @@
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\CommentsController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->prefix('dashboard')->group(function () {
@@ -25,6 +26,8 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
         Route::post('store/{id?}', [NewsController::class, 'store'])->name('news.store');
         Route::delete('destroy/{id?}', [NewsController::class, 'destroy'])->name('news.destroy');
     });
+
+    Route::resource('comments', CommentsController::class);   
 });
 
 require __DIR__.'/auth.php';

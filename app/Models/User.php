@@ -52,4 +52,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(News::class);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
 }
