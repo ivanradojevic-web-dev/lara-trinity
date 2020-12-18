@@ -36,4 +36,19 @@ class Comment extends Model
     {
         return $this->status === 'active';
     }
+
+    public function getChannelAttribute()
+    {
+        if ( $this->posts()->exists() ) {
+            return 'Post';
+        } else if ( $this->news()->exists() ) {
+            return 'News';
+        } else {
+            return '/';
+        }    
+    }
+
+    protected $appends = ['channel', 'is_active'];
+
+
 }

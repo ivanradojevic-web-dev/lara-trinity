@@ -16,6 +16,9 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Livewire css -->
+    @livewireStyles
 </head>
 
 <body class="font-sans antialiased">
@@ -64,6 +67,9 @@
         </div>
         @endif
     </div>
+
+    <!-- Livewire js -->
+    @livewireScripts
 </body>
 
 </html>

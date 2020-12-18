@@ -1,11 +1,19 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Comments
-        </h2>
-        <a href="#" class="ml-3 font-semibold inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-            All
+        <a href="{{ route('comments.index') }}" class="ml-3 font-semibold inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            All Comments
         </a>
+        <div>
+        <x-nav-link :href="route('comments.index', ['channel' => 'posts'])" 
+            :active="request()->fullUrl() == route('comments.index', ['channel' => 'posts'])">
+            Post Comments
+        </x-nav-link>
+
+        <x-nav-link :href="route('comments.index', ['channel' => 'news'])" 
+            :active="request()->fullUrl() == route('comments.index', ['channel' => 'news'])">
+            News Comments
+        </x-nav-link>
+        </div>
     </x-slot>
 
     <div class="py-12">
@@ -33,7 +41,10 @@
                                                 <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     <span>Status</span>
                                                 </th>
-                                                <th scope="col" class="px-6 py-3 bg-gray-50 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    <span>Channel</span>
+                                                </th>
+                                                <th scope="col" class="px-6 py-3 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                     <span>Actions
                                                 </th>
                                             </tr>
@@ -51,23 +62,12 @@
                                                     {{ $comment->replies_count }}
                                                 </td>
 
-                                                @if($comment->is_active)
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-white">
-                                                    <button disabled class="p-1 bg-green-400 ">{{ $comment->status }}</button>
-                                                </td>                                              
-                                                @else
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-white">
-                                                    <form method="POST" action="{{route('comments.update', $comment->id)}}" >
-                                                        @csrf
-                                                        @method("PUT")
-                                                        <input type="hidden" name="status" value="active">       
-                                                        <button type="submit" class="p-1 bg-yellow-400 hover:bg-yellow-300 shadow">
-                                                        {{ $comment->status }}
-                                                        </button>
-                                                    </form>    
-                                                </td>
-                                                @endif
+                                                <livewire:comment-status :comment="$comment"/>
 
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                    {{ $comment->channel }}
+                                                </td>
+                                              
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                     <a href="#" target="_blank" class="text-indigo-600 hover:text-indigo-900">View</a>
                                                     <form class="inline-block" action="" method="POST">

@@ -15,12 +15,12 @@ class CommentsController extends Controller
      */
     public function index(CommentRepository $commentrepository)
     {
-        $comments = Comment::with('author', 'posts', 'news', 'replies')->withCount('replies')->latest()->paginate(10);
+        //$comments = Comment::with('author', 'posts', 'news', 'replies')->withCount('replies')->latest()->paginate(10);
 
-        //dd($comments);
+        //return $comments;
         //return view('news.index', compact('news'));
 
-        //$comments = $commentrepository->browse();
+        $comments = $commentrepository->browse();
 
         return view('comments.index', compact('comments'));
     }
@@ -77,15 +77,15 @@ class CommentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'status' => 'required'
-        ]);
+        //$request->validate([
+        //    'status' => 'required'
+        //]);
 
-        $comment = Comment::findOrFail($id);
-        $comment->status = $request->status;
-        $comment->save();
+        //$comment = Comment::findOrFail($id);
+        //$comment->status = $request->status;
+        //$comment->save();
 
-        return back()->with('success', '');
+        //return back()->with('success', '');
     }
 
     /**
