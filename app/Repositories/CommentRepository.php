@@ -8,20 +8,23 @@ class CommentRepository
 {   
 	public function browse()
 	{
-		if (request()->channel === 'posts') {      
+		if ( request()->channel === 'posts' ) {      
             return $comments = Comment::with('author', 'posts', 'news', 'replies')
                 ->withCount('replies')
-                ->whereHas(request()->channel)
+                ->whereHas('posts')
                 ->latest()
                 ->paginate(10);
-        } else if (request()->channel === 'news') {
+        } else if ( request()->channel === 'news' ) {
             return $comments = Comment::with('author', 'posts', 'news', 'replies')
                 ->withCount('replies')
-                ->whereHas(request()->channel)
+                ->whereHas('news')
                 ->latest()
                 ->paginate(10);     
         } else {
-            return $comments = Comment::with('author', 'posts', 'news', 'replies')->withCount('replies')->latest()->paginate(10); 
+            return $comments = Comment::with('author', 'posts', 'news', 'replies')
+                ->withCount('replies')
+                ->latest()
+                ->paginate(10); 
         }
 	}
 }

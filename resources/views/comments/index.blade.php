@@ -1,7 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
-        <a href="{{ route('comments.index') }}" class="ml-3 font-semibold inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        <a href="{{ route('comments.index') }}">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             All Comments
+        </h2>
         </a>
         <div>
         <x-nav-link :href="route('comments.index', ['channel' => 'posts'])" 
@@ -45,7 +47,7 @@
                                                     <span>Channel</span>
                                                 </th>
                                                 <th scope="col" class="px-6 py-3 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    <span>Actions
+                                                    <span class="mr-6">Actions</span>
                                                 </th>
                                             </tr>
                                         </thead>
@@ -65,12 +67,13 @@
                                                 <livewire:comment-status :comment="$comment"/>
 
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                    {{ $comment->channel }}
+                                                    {{ $comment->channel }}                                                
                                                 </td>
                                               
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    <a href="#" target="_blank" class="text-indigo-600 hover:text-indigo-900">View</a>
-                                                    <form class="inline-block" action="" method="POST">
+                                                    <a href="#">View</a>
+                                                    <form class="inline-block" action="{{ route('comments.destroy', $comment->id) }}"
+                                                        method="POST">
                                                         @method('DELETE')
                                                         @csrf
                                                         <button type="submit" class="ml-4 text-indigo-600 hover:text-indigo-900">Delete</button>

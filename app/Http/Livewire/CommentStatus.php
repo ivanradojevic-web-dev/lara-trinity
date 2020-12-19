@@ -14,7 +14,7 @@ class CommentStatus extends Component
         $this->$comment = $comment;
     }
 
-    public function EditStatus()
+    public function editStatus()
     {
         $this->comment->status = 'active';
         $this->comment->save();

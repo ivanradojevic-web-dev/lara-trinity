@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use App\Models\Post;
+use App\Models\Comment;
 
 class FrontendController extends Controller
 {
@@ -34,7 +35,11 @@ class FrontendController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        return view('post', compact('post'));
+        $comments = $post->comments()->with('replies', 'author')->get();
+
+        //return $comments;
+
+        return view('post', compact('post', 'comments'));
     }
 
     public function newsShow($id)

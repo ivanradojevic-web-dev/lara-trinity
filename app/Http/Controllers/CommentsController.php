@@ -96,6 +96,8 @@ class CommentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Comment::destroy($id);
+
+        return redirect()->route('comments.index')->with('success', 'Post Deleted!');
     }
 }

@@ -9,7 +9,7 @@ class Comment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'content'];
+    protected $fillable = ['user_id', 'content', 'status'];
 
     public function author()
     {
@@ -31,7 +31,6 @@ class Comment extends Model
         return $this->belongsToMany(News::class);
     }
 
-
     public function getIsActiveAttribute()
     {
         return $this->status === 'active';
@@ -49,6 +48,5 @@ class Comment extends Model
     }
 
     protected $appends = ['channel', 'is_active'];
-
 
 }
