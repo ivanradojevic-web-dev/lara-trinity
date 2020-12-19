@@ -15,11 +15,6 @@ class CommentsController extends Controller
      */
     public function index(CommentRepository $commentrepository)
     {
-        //$comments = Comment::with('author', 'posts', 'news', 'replies')->withCount('replies')->latest()->paginate(10);
-
-        //return $comments;
-        //return view('news.index', compact('news'));
-
         $comments = $commentrepository->browse();
 
         return view('comments.index', compact('comments'));
@@ -98,6 +93,6 @@ class CommentsController extends Controller
     {
         Comment::destroy($id);
 
-        return redirect()->route('comments.index')->with('success', 'Post Deleted!');
+        return redirect()->route('comments.index')->with('message', 'Comment Deleted!');
     }
 }
