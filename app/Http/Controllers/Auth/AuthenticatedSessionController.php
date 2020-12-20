@@ -17,6 +17,8 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
+        session()->put('previousUrl', url()->previous());
+
         return view('auth.login');
     }
 
@@ -32,7 +34,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect( str_replace(url('/'), '', session()->get('previousUrl', '/')) );
     }
 
     /**

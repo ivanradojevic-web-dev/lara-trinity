@@ -35,7 +35,7 @@ class FrontendController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        $comments = $post->comments()->with('replies', 'author')->get();
+        $comments = $post->comments()->active()->get();
 
         //return $comments;
 

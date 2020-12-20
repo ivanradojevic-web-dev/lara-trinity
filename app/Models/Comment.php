@@ -47,6 +47,11 @@ class Comment extends Model
         }    
     }
 
+    public function scopeActive($query)
+    {
+        return $query->with('replies', 'author')->where('status', 'active');
+    }
+
     protected $appends = ['channel', 'is_active'];
 
 }
