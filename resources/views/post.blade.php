@@ -1,5 +1,6 @@
 <x-guest-layout>
     <div class="relative py-16 bg-white overflow-hidden">
+
         <div class="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
             <div class="relative h-full text-lg max-w-prose mx-auto" aria-hidden="true">
                 <svg class="absolute top-12 left-full transform translate-x-32" width="404" height="384" fill="none" viewBox="0 0 404 384">
@@ -28,6 +29,7 @@
                 </svg>
             </div>
         </div>
+        
         <div class="relative px-4 sm:px-6 lg:px-8">
             <div class="text-lg max-w-prose mx-auto">
                 <span class="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase">Post</span>
@@ -80,6 +82,7 @@
                         @endforeach
                 </div>
                 @endforeach
+                {{ $comments->links() }}
               </div>
             </div>
         </div>

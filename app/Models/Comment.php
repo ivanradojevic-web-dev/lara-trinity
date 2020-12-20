@@ -49,7 +49,7 @@ class Comment extends Model
 
     public function scopeActive($query)
     {
-        return $query->with('replies', 'author')->where('status', 'active');
+        return $query->with('replies', 'author')->where('status', 'active')->latest();
     }
 
     protected $appends = ['channel', 'is_active'];

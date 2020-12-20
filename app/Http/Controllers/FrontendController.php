@@ -35,7 +35,7 @@ class FrontendController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        $comments = $post->comments()->active()->get();
+        $comments = $post->comments()->active()->paginate(3);
 
         //return $comments;
 

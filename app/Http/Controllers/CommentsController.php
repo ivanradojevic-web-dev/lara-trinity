@@ -72,15 +72,7 @@ class CommentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //$request->validate([
-        //    'status' => 'required'
-        //]);
-
-        //$comment = Comment::findOrFail($id);
-        //$comment->status = $request->status;
-        //$comment->save();
-
-        //return back()->with('success', '');
+        //
     }
 
     /**
@@ -93,6 +85,6 @@ class CommentsController extends Controller
     {
         Comment::destroy($id);
 
-        return redirect()->route('comments.index')->with('message', 'Comment Deleted!');
+        return back()->with('message', 'Comment Deleted!');
     }
 }

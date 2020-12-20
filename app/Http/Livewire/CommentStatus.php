@@ -11,7 +11,7 @@ class CommentStatus extends Component
 
     public function mount(Comment $comment)
     {
-        $this->$comment = $comment;
+        $this->comment = $comment;
     }
 
     public function editStatus()
