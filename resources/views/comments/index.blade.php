@@ -6,14 +6,7 @@
         </h2>
         </a>
         <div>
-        <x-nav-link :href="route('comments.index', ['channel' => 'posts'])" 
-            :active="request()->fullUrl() == route('comments.index', ['channel' => 'posts'])">
-            Post Comments
-        </x-nav-link>
-        <x-nav-link :href="route('comments.index', ['channel' => 'news'])" 
-            :active="request()->fullUrl() == route('comments.index', ['channel' => 'news'])">
-            News Comments
-        </x-nav-link>
+
         </div>
     </x-slot>
     <div class="py-12">

@@ -47,11 +47,18 @@ class Comment extends Model
         }    
     }
 
-    public function scopeActive($query)
+    public function scopeBrowse($query)
     {
-        return $query->with('replies', 'author')->where('status', 'active')->latest();
+        return $query->with('author', 'posts', 'news', 'replies')
+            ->withCount('replies')
+            ->latest();
     }
 
-    protected $appends = ['channel', 'is_active'];
+    public function scopeActive($query)
+    {
+        return $query->with('replies', 'author')
+            ->where('status', 'active')
+            ->latest();            
+    }
 
 }

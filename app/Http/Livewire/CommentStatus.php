@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Comment;
 use App\Mail\ChannelCommented;
+use App\Mail\CommentApproved;
 use Illuminate\Support\Facades\Mail;
 
 class CommentStatus extends Component
@@ -30,9 +31,7 @@ class CommentStatus extends Component
         }
 
         Mail::to($sendto)->send(new ChannelCommented($channelname));
-            //Mail::to($this->comment->author)->send(new CommentApproved($channelname));
-
-        session()->flash('success', '');
+        Mail::to($this->comment->author->email)->send(new CommentApproved($channelname));
     }
 
     public function render()

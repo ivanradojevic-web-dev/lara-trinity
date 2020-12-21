@@ -27,7 +27,10 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
         Route::delete('destroy/{id?}', [NewsController::class, 'destroy'])->name('news.destroy');
     });
 
-    Route::resource('comments', CommentsController::class);   
+    Route::prefix('comments')->group(function () {
+        Route::get('', [CommentsController::class, 'index'])->name('comments.index');
+        Route::delete('destroy/{id?}', [CommentsController::class, 'destroy'])->name('comments.destroy');
+    });
 });
 
 require __DIR__.'/auth.php';

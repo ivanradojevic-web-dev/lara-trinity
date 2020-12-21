@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comment;
-use App\Repositories\CommentRepository;
 
 class CommentsController extends Controller
 {
@@ -13,9 +12,9 @@ class CommentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(CommentRepository $commentrepository)
+    public function index()
     {
-        $comments = $commentrepository->browse();
+        $comments = Comment::browse()->paginate(10);
 
         return view('comments.index', compact('comments'));
     }
