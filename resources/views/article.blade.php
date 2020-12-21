@@ -28,6 +28,7 @@
                 </svg>
             </div>
         </div>
+
         <div class="relative px-4 sm:px-6 lg:px-8">
             <div class="text-lg max-w-prose mx-auto">
                 <span class="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase">Article</span>
@@ -38,6 +39,13 @@
             <div class="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
                 <p>{!! nl2br(e($article->content)) !!}</p>
             </div>
+
+            <div class="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
+                <hr>
+                <livewire:article-comment :news="$article"/>
+                <x-comments :comments="$comments" />
+            </div>
+
         </div>
     </div>
 

@@ -37,8 +37,6 @@ class FrontendController extends Controller
 
         $comments = $post->comments()->active()->paginate(3);
 
-        //return $comments;
-
         return view('post', compact('post', 'comments'));
     }
 
@@ -46,6 +44,8 @@ class FrontendController extends Controller
     {
         $article = News::findOrFail($id);
 
-        return view('article', compact('article'));
+        $comments = $article->comments()->active()->paginate(3);
+
+        return view('article', compact('article', 'comments'));
     }
 }

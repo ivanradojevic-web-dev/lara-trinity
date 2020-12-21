@@ -17,21 +17,34 @@
                                   
     <div class="login shadow border-1 border-gray-400 p-4">
         <p class="tracking-wider font-bold text-gray-700">Comments</p>
+        @if($showForm)
         <h4 class="tracking-wider text-2xl font-extrabold text-gray-900">Join the conversation</h4>
         <p>You are signed in, <span>{{ Auth::user()->name }}</span></p>
         <form wire:submit.prevent="sendComment">
-        	<input wire:model.lazy="content" type="text" class="block w-full" placeholder="Add your comment...">
+            
+        	<input wire:model.defer="content" type="text" class="block w-full" placeholder="Add your comment...">
+            
         	@error('content')
         		<p class="text-red-500 mt-1">{{ $message }}</p>
       		@enderror
-        	<button type="submit" class="mt-4 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+            
+        	<button wire:loading.remove type="submit" class="mt-4 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
                 Post
             </button>
+
+            <button wire:loading type="submit" class="mt-4 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+                Sending...
+            </button>
+
             <button type="button" wire:click="clearContent" class="ml-2 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 text-base font-medium text-gray-900">
                 Cancel
             </button>
+            
         </form>	
-        <p class="text-sm">Comments must follow the house rules</p>    
+        <p class="text-sm">Comments must follow the house rules</p>
+        @else
+        <h4 class="tracking-wider text-2xl font-extrabold bg-gray-200 text-gray-900">Thanks  <span>{{ Auth::user()->name }}</span> for the comment</h4>
+        @endif    
     </div>
     
     @else

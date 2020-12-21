@@ -17,7 +17,7 @@ class News extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function coments()
+    public function comments()
     {
         return $this->belongsToMany(Comment::class);
     }
