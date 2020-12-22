@@ -32,7 +32,7 @@ class ArticleComment extends Component
 
         $this->showForm = false;
 
-        session()->flash('message', 'Comment Sent');
+        session()->flash('message', 'Your comment has been sent');
     }
 
     public function clearContent()

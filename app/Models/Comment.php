@@ -38,13 +38,7 @@ class Comment extends Model
 
     public function getChannelAttribute()
     {
-        if ( $this->posts()->with('author', 'comments')->exists() ) {
-            return 'Post';
-        } else if ( $this->news()->with('author', 'comments')->exists() ) {
-            return 'News';
-        } else {
-            return '/';
-        }    
+        return ( $this->posts()->with('author', 'comments')->exists() ) ? 'Post' : 'News';
     }
 
     public function scopeBrowse($query)

@@ -19,7 +19,7 @@
         <p class="tracking-wider font-bold text-gray-700">Comments</p>
         @if($showForm)
         <h4 class="tracking-wider text-2xl font-extrabold text-gray-900">Join the conversation</h4>
-        <p>You are signed in, <span>{{ Auth::user()->name }}</span></p>
+        <p>You are signed in, <span class="font-bold">{{ Auth::user()->name }}</span></p>
         <form wire:submit.prevent="sendComment">
             
         	<input wire:model="content" type="text" class="block w-full" placeholder="Add your comment...">
@@ -43,7 +43,7 @@
         </form>	
         <p class="text-sm">Comments must follow the house rules</p>
         @else
-        <h4 class="tracking-wider text-2xl font-extrabold bg-gray-200 text-gray-900">Thanks  <span>{{ Auth::user()->name }}</span> for the comment</h4>
+        <h4 class="tracking-wider text-2xl font-extrabold bg-gray-200 text-gray-900">Thank you <span>{{ Auth::user()->name }}</span> for the comment</h4>
         @endif    
     </div>
     
