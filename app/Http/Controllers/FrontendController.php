@@ -35,17 +35,13 @@ class FrontendController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        $comments = $post->comments()->active()->paginate(3);
-
-        return view('post', compact('post', 'comments'));
+        return view('post', compact('post'));
     }
 
     public function newsShow($id)
     {
         $article = News::findOrFail($id);
 
-        $comments = $article->comments()->active()->paginate(3);
-
-        return view('article', compact('article', 'comments'));
+        return view('article', compact('article'));
     }
 }

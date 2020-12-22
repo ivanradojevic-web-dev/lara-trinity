@@ -43,7 +43,7 @@
             <div class="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
                 <hr>
                 <livewire:article-comment :news="$article"/>
-                <x-comments :comments="$comments" />
+                <livewire:news-comments :news="$article"/>
             </div>
 
         </div>

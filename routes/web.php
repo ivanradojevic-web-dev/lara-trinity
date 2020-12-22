@@ -6,11 +6,12 @@ use App\Http\Controllers\PostsController;
 use App\Http\Controllers\CommentsController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth'])->prefix('dashboard')->group(function () {
-    Route::get('', function () {
+Route::get('dashboard', function () {
         return view('dashboard');
-    })->name('dashboard');
+    })->name('dashboard')->middleware('auth');
 
+Route::middleware(['auth', 'can:isAdmin'])->prefix('dashboard')->group(function () {
+    
     Route::prefix('posts')->group(function () {
         Route::get('', [PostsController::class, 'index'])->name('post.index');
         Route::get('create', [PostsController::class, 'create'])->name('post.create');
@@ -31,6 +32,7 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
         Route::get('', [CommentsController::class, 'index'])->name('comments.index');
         Route::delete('destroy/{id?}', [CommentsController::class, 'destroy'])->name('comments.destroy');
     });
+    
 });
 
 require __DIR__.'/auth.php';

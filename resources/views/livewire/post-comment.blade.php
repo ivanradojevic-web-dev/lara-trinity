@@ -2,7 +2,7 @@
 	@if (Auth::check()) 
 
 	@if (session("message"))
-    <div x-data="{ isOpen: true }" x-show="isOpen" class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-indigo-600">
+    <div x-data="{ isOpen: true }" x-show.transition.opacity.duration.720="isOpen" class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-indigo-600">
         <span class="text-xl inline-block mr-5 align-middle">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg>
         </span>
@@ -22,17 +22,17 @@
         <p>You are signed in, <span>{{ Auth::user()->name }}</span></p>
         <form wire:submit.prevent="sendComment">
             
-        	<input wire:model.defer="content" type="text" class="block w-full" placeholder="Add your comment...">
+        	<input wire:model="content" type="text" class="block w-full" placeholder="Add your comment...">
             
         	@error('content')
         		<p class="text-red-500 mt-1">{{ $message }}</p>
       		@enderror
             
-        	<button wire:loading.remove type="submit" class="mt-4 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+        	<button wire:loading.remove wire:target="sendComment" type="submit" class="mt-4 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
                 Post
             </button>
 
-            <button wire:loading type="submit" class="mt-4 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+            <button wire:loading wire:target="sendComment" type="submit" class="mt-4 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
                 Sending...
             </button>
 

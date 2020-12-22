@@ -38,9 +38,9 @@ class Comment extends Model
 
     public function getChannelAttribute()
     {
-        if ( $this->posts()->exists() ) {
+        if ( $this->posts()->with('author', 'comments')->exists() ) {
             return 'Post';
-        } else if ( $this->news()->exists() ) {
+        } else if ( $this->news()->with('author', 'comments')->exists() ) {
             return 'News';
         } else {
             return '/';
@@ -53,12 +53,4 @@ class Comment extends Model
             ->withCount('replies')
             ->latest();
     }
-
-    public function scopeActive($query)
-    {
-        return $query->with('replies', 'author')
-            ->where('status', 'active')
-            ->latest();            
-    }
-
 }

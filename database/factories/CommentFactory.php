@@ -14,7 +14,8 @@ class CommentFactory extends Factory
     {
         return [
             'content' => $this->faker->paragraph(5, true),
-            'status' => Arr::random(['active', 'pending'])
+            'status' => Arr::random(['active', 'pending']),
+            'user_id' => $this->faker->numberBetween($min = 2, $max = 11),          
         ];
     }
 }

@@ -28,12 +28,16 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
 
-        User::factory(10)
-            ->has(Post::factory()->count(10), 'posts')
-            ->has(News::factory()->count(10), 'news')
-            ->has(Comment::factory()->count(5), 'comments')
+        User::factory(10)->create();
+
+        Post::factory(10)
+            ->has(Comment::factory()->count(4), 'comments')
             ->create();
 
-        Reply::factory(30)->create();
+        News::factory(10)
+            ->has(Comment::factory()->count(4), 'comments')
+            ->create();    
+
+        Reply::factory(40)->create();
     }
 }

@@ -14,7 +14,7 @@ class ReplyFactory extends Factory
         return [
             'content' => $this->faker->paragraph(3, true),
             'user_id' => $this->faker->numberBetween($min = 2, $max = 11),
-            'comment_id' => $this->faker->numberBetween($min = 1, $max = 50),
+            'comment_id' => $this->faker->numberBetween($min = 1, $max = 80),
         ];
     }
 }

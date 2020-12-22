@@ -13,7 +13,8 @@ class NewsFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(5),
-            'content' => $this->faker->paragraph(30, true)
+            'content' => $this->faker->paragraph(30, true),
+            'user_id' => $this->faker->numberBetween($min = 2, $max = 11),
         ];
     }
 }

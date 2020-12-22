@@ -30,6 +30,6 @@ class ChannelCommented extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.channel.commented');
+        return $this->markdown('emails.channel_commented');
     }
 }

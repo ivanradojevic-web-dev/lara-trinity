@@ -44,7 +44,8 @@
             <div class="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
                 <hr>
                 <livewire:post-comment :post="$post"/> 
-                <x-comments :comments="$comments" />
+                <livewire:browse-comments :post="$post"/> 
+          
             </div>
 
         </div>

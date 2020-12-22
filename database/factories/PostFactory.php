@@ -13,7 +13,8 @@ class PostFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(5),
-            'content' => $this->faker->paragraph(50, true)
+            'content' => $this->faker->paragraph(50, true),
+            'user_id' => $this->faker->numberBetween($min = 2, $max = 11),
         ];
     }
 }
