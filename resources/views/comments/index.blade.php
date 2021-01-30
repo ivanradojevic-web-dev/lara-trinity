@@ -73,7 +73,7 @@
                                                 </td>  
                                                 @elseif ( $comment->is_news() )
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                    <a href="{{ route('post.show', $comment->commentable_id) }}">
+                                                    <a href="{{ route('news.show', $comment->commentable_id) }}">
                                                     News     
                                                     </a>                                          
                                                 </td> 
