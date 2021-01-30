@@ -66,14 +66,11 @@
                                                 </td>
                                                 <livewire:comment-status :comment="$comment"/>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                    {{ $comment->channel }}                                                
+                                                    <a href="{{ route('post.show', $comment->commentable_id) }}">
+                                                    {{ $comment->commentable_type }}      
+                                                    </a>                                          
                                                 </td>                                             
-                                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    @if ($comment->channel === 'Post')
-                                                    <a href="{{ route('post.show', $comment->posts[0]->id) }}" target="_blank" class="text-indigo-600 hover:text-indigo-900">View</a>
-                                                    @elseif ($comment->channel === 'News')
-                                                    <a href="{{ route('news.show', $comment->news[0]->id) }}" target="_blank" class="text-indigo-600 hover:text-indigo-900">View</a>
-                                                    @endif
+                                                <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
                                                     <form class="inline-block" action="{{ route('comments.destroy', $comment->id) }}"
                                                         method="POST">
                                                         @method('DELETE')

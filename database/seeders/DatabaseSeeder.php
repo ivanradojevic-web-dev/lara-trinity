@@ -31,11 +31,11 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
 
         Post::factory(10)
-            ->has(Comment::factory()->count(4), 'comments')
+            ->hasComments(4)
             ->create();
 
         News::factory(10)
-            ->has(Comment::factory()->count(4), 'comments')
+            ->hasComments(4)
             ->create();    
 
         Reply::factory(40)->create();

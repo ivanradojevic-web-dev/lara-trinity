@@ -1,4 +1,4 @@
-@if($comment->is_active)
+@if($comment->status === "active")
 <td class="px-6 py-4 whitespace-nowrap text-sm text-white">	
     <button disabled class="h-8 w-16 p-1 bg-green-400 cursor-default">{{ $comment->status }}</button>
 </td>                                              

@@ -42,3 +42,7 @@ Route::get('/posts', [FrontendController::class, 'posts'])->name('posts');
 Route::get('/posts/{id}', [FrontendController::class, 'postShow'])->name('post.show');
 Route::get('/news', [FrontendController::class, 'news'])->name('news');
 Route::get('/news/{id}', [FrontendController::class, 'newsShow'])->name('news.show');
+
+
+
+

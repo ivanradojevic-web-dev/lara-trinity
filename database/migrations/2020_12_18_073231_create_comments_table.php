@@ -18,6 +18,8 @@ class CreateCommentsTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->longText('content');
             $table->string('status')->default('pending');
+            $table->unsignedBigInteger('commentable_id');
+            $table->string('commentable_type');
             $table->timestamps();
         });
     }

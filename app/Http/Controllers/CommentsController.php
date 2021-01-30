@@ -9,7 +9,7 @@ class CommentsController extends Controller
 {
     public function index()
     {
-        $comments = Comment::browse()->paginate(10);
+        $comments = Comment::withCount('replies')->latest()->paginate(10);
 
         return view('comments.index', compact('comments'));
     }

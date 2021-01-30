@@ -21,30 +21,8 @@ class Comment extends Model
         return $this->hasMany(Reply::class);
     }
 
-    public function posts()
+    public function commentable()
     {
-        return $this->belongsToMany(Post::class);
-    }
-
-    public function news()
-    {
-        return $this->belongsToMany(News::class);
-    }
-
-    public function getIsActiveAttribute()
-    {
-        return $this->status === 'active';
-    }
-
-    public function getChannelAttribute()
-    {
-        return ( $this->posts()->with('author', 'comments')->exists() ) ? 'Post' : 'News';
-    }
-
-    public function scopeBrowse($query)
-    {
-        return $query->with('author', 'posts', 'news', 'replies')
-            ->withCount('replies')
-            ->latest();
+        return $this->morphTo();
     }
 }

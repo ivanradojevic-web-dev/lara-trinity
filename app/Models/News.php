@@ -19,6 +19,6 @@ class News extends Model
 
     public function comments()
     {
-        return $this->belongsToMany(Comment::class);
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }
