@@ -23,11 +23,11 @@ class CommentStatus extends Component
         $this->comment->save();
 
         if ($this->comment->is_post()) {
-            $channelname = $this->comment->title;
-            $sendto = $this->comment->author->email;
+            $channelname = $this->comment->commentable()->post()->first()->title;
+            $sendto = $this->comment->commentable()->post()->first()->author->email;
         } elseif ($this->comment->is_news()) {
-            $channelname = $this->comment->title;
-            $sendto = $this->comment->author->email;
+            $channelname = $this->comment->commentable()->news()->first()->title;
+            $sendto = $this->comment->commentable()->news()->first()->author->email;
         }
 
         Mail::to($sendto)->send(new ChannelCommented($channelname));

@@ -47,7 +47,7 @@ Route::get('/news/{id}', [FrontendController::class, 'newsShow'])->name('news.sh
 Route::get('test', function () {
 
     $comment = \App\Models\Comment::find(1);
-        return $comment->author->email;
+        return $comment->commentable()->post()->first()->title;
     });
 
 

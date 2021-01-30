@@ -11,16 +11,16 @@ class CommentApproved extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $postname;
+    public $channelname;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($postname)
+    public function __construct($channelname)
     {
-        $this->postname = $postname;
+        $this->channelname = $channelname;
     }
 
     /**
