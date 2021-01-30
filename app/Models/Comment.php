@@ -25,4 +25,14 @@ class Comment extends Model
     {
         return $this->morphTo();
     }
+
+    public function is_post()
+    {
+        return $this->commentable_type === "App\Models\Post";
+    }
+
+    public function is_news()
+    {
+        return $this->commentable_type === "App\Models\News";
+    }
 }

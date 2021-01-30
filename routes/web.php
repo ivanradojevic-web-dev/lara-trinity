@@ -43,10 +43,7 @@ Route::get('/posts/{id}', [FrontendController::class, 'postShow'])->name('post.s
 Route::get('/news', [FrontendController::class, 'news'])->name('news');
 Route::get('/news/{id}', [FrontendController::class, 'newsShow'])->name('news.show');
 
-Route::get('test', function () {
-        $comment = \App\Models\Comment::find(41);
-        return $comment->commentable()->first();
-    });
+
 
 
 

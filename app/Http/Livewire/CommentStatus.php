@@ -22,10 +22,10 @@ class CommentStatus extends Component
         $this->comment->status = 'active';
         $this->comment->save();
 
-        if ($this->comment->commentable_type === "App\Models\Post" ) {
+        if ($this->comment->is_post()) {
             $channelname = $this->comment->commentable()->first()->title;
             $sendto = $this->comment->commentable()->first()->author->email;
-        } elseif ($this->comment->commentable_type === "App\Models\News") {
+        } elseif ($this->comment->is_news()) {
             $channelname = $this->comment->commentable()->first()->title;
             $sendto = $this->comment->commentable()->first()->author->email;
         }

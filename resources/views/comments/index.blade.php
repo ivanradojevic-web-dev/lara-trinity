@@ -65,13 +65,13 @@
                                                     {{ $comment->replies_count }}
                                                 </td>
                                                 <livewire:comment-status :comment="$comment"/>
-                                                @if ( $comment->commentable_type === "App\Models\Post") 
+                                                @if ( $comment->is_post() ) 
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                     <a href="{{ route('post.show', $comment->commentable_id) }}">
                                                     Post      
                                                     </a>                                          
                                                 </td>  
-                                                @elseif ( $comment->commentable_type === "App\Models\News" )
+                                                @elseif ( $comment->is_news() )
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                     <a href="{{ route('post.show', $comment->commentable_id) }}">
                                                     News     
