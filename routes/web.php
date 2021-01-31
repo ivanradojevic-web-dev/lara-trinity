@@ -49,3 +49,4 @@ Route::get('/news/{id}', [FrontendController::class, 'newsShow'])->name('news.sh
 
 
 
+
